@@ -45,6 +45,11 @@ public class DoublyLinkedList {
 
     Node head = null;
     Node tail = null;
+    private  int count = 0;
+
+    public  int getCount() {
+        return count;
+    }
 
     public void addStudentByOrder(Student student) {
 
@@ -80,6 +85,7 @@ public class DoublyLinkedList {
 
             while (curr.next != null && curr.next.data.getNumber() < newNode.data.getNumber()) {
                 curr = curr.next;
+
             }
 
             newNode.next = curr.next;
@@ -91,17 +97,20 @@ public class DoublyLinkedList {
             }
             curr.next = newNode;
             newNode.previous = head;
-
+            tail = curr.next;
         }
+        count++;
 
 
     }
+
 
     public String searchByName(String name) {
 
 
         while (head.data.getName() != name && head.next != null) {
             head = head.next;
+
         }
 
         if (head.data.getName() == name) {
@@ -109,11 +118,15 @@ public class DoublyLinkedList {
         }
 
         else {
+
             return null;
         }
 
     }
 
+    public int size() {
+        return count;
+    }
 
 
 
