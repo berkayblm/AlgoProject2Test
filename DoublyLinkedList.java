@@ -114,23 +114,28 @@ public class DoublyLinkedList {
 
     }
 
+    public void searchByName(String name, Node head) {
 
-    public String searchByName(String name) {
+        Node curr = head;
+        boolean exist = false;
 
+        while (curr.next != null) {
 
-        while (head.data.getName() != name && head.next != null) {
-            head = head.next;
+            if (curr.data.getName() == name)
+                System.out.println(curr.data);
+                exist = true;
+            curr = curr.next;
 
+            if (curr.next == null && curr.data.getName() == name)
+                System.out.println(curr.data);
+                exist = true;
         }
 
-        if (head.data.getName() == name) {
-            return head.data.toString();
+        if (exist == false) {
+            System.out.println("-------yok------");
         }
 
-        else {
 
-            return null;
-        }
 
     }
 

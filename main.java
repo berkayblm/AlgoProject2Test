@@ -27,7 +27,7 @@ public class main {
         ArrayList<String> arr6 = new ArrayList<>();
         ArrayList<String> arr7 = new ArrayList<>();
         ArrayList<String> arr8 = new ArrayList<>();
-
+        ArrayList<String> arr9 = new ArrayList<>();
 
         arr1.add("012021");
         arr2.add("34234342");
@@ -37,14 +37,18 @@ public class main {
         arr6.add("213213");
         arr7.add("3545343");
         arr8.add("029283");
+        arr9.add("23323234");
+
         Student student1 = new Student(5, "Ali", arr1);
-        Student student2 = new Student(7, "Vecdi", arr2); // curr    3 5 7
+        Student student2 = new Student(7, "Vecdi Aytaç", arr2); // curr    3 5 7
         Student student3 = new Student(3, "Free", arr3);
-        Student student4 = new Student(11, "Fatih", arr4); // tail // curr
-        Student student5 = new Student(1, "Veli", arr5); // curr
-        Student student6 = new Student(2, "Ramo", arr5);
-        Student student7 = new Student(19, "Azims", arr5);
+        Student student4 = new Student(11, "Vecdi Aytaç", arr4); // tail // curr
+        Student student5 = new Student(1, "Fatih Terim", arr5); // curr
+        Student student6 = new Student(2, "Fatih Terim", arr5);
+        Student student7 = new Student(19, "Fatih Terim", arr5);
         Student student8 = new Student(6, "Ronaldo", arr5);
+        Student student9 = new Student(2,"Ysemin",arr9);
+
 
         DoublyLinkedList list = new DoublyLinkedList();
         list.addStudentByOrder(student1);
@@ -55,18 +59,20 @@ public class main {
         list.addStudentByOrder(student6);
         list.addStudentByOrder(student7);
         list.addStudentByOrder(student8);
+        list.addStudentByOrder(student9);
         printOutList(list);
 
         System.out.println("****************");
-        System.out.println(list.tail.data);
+
         /*System.out.println(list.head.data);
         System.out.println(list.tail.data);*/
-        printOutList2(list);
+        traverseList(list);
 
         System.out.println(list.getCount());
         System.out.println("***********");
         //list.sortDescending(list.head, list);
-
+        list.searchByName("Vecdi Aytaç",list.head);
+        list.searchByName("Fatih Terim",list.head);
     }
 
     public static void printOutList(DoublyLinkedList list) {
@@ -81,7 +87,7 @@ public class main {
 
     }
 
-    public static void printOutList2(DoublyLinkedList list) {
+    public static void traverseList(DoublyLinkedList list) {
 
         DoublyLinkedList.Node curr;
         curr = list.tail;
