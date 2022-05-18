@@ -88,16 +88,26 @@ public class DoublyLinkedList {
 
             }
 
+            /*Node findTail = head;
+            while (findTail.next != null) {
+                findTail = findTail.next;
+            }
+            tail = findTail;*/
+
             newNode.next = curr.next;
 
             if (curr.next != null) {
 
                 newNode.next.previous = newNode;
 
+
             }
             curr.next = newNode;
-            newNode.previous = head;
-            tail = curr.next;
+            newNode.previous = curr;
+            //newNode.previous = head;
+            if (newNode.data.getNumber() >= tail.data.getNumber())
+                tail = newNode;
+
         }
         count++;
 

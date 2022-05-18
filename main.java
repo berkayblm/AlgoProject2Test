@@ -38,10 +38,10 @@ public class main {
         arr7.add("3545343");
         arr8.add("029283");
         Student student1 = new Student(5, "Ali", arr1);
-        Student student2 = new Student(7, "Vecdi", arr2);
+        Student student2 = new Student(7, "Vecdi", arr2); // curr    3 5 7
         Student student3 = new Student(3, "Free", arr3);
-        Student student4 = new Student(11, "Fatih", arr4);
-        Student student5 = new Student(1, "Veli", arr5);
+        Student student4 = new Student(11, "Fatih", arr4); // tail // curr
+        Student student5 = new Student(1, "Veli", arr5); // curr
         Student student6 = new Student(2, "Ramo", arr5);
         Student student7 = new Student(19, "Azims", arr5);
         Student student8 = new Student(6, "Ronaldo", arr5);
@@ -58,12 +58,14 @@ public class main {
         printOutList(list);
 
         System.out.println("****************");
+        System.out.println(list.tail.data);
         /*System.out.println(list.head.data);
         System.out.println(list.tail.data);*/
         printOutList2(list);
 
         System.out.println(list.getCount());
         System.out.println("***********");
+        //list.sortDescending(list.head, list);
 
     }
 
@@ -76,7 +78,6 @@ public class main {
             System.out.println(current.data + "  ");
             current = current.next;
         }
-
 
     }
 
@@ -93,14 +94,7 @@ public class main {
 
     }
 
-    public static void qweqwe(DoublyLinkedList list) {
 
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.head);
-
-        }
-
-    }
 
 
 }
