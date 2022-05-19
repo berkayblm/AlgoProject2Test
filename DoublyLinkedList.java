@@ -143,6 +143,46 @@ public class DoublyLinkedList {
         return count;
     }
 
+    public boolean removeStudent(int number, DoublyLinkedList list) {
+
+        Node position = list.head;
+        while (position != null) {
+
+            if (position.data.getNumber() == number)
+
+                if(position != head && position != tail) {  // ortada
+
+                    position.previous.next = position.next;
+                    position.next.previous = position.previous;
+                    position = position.next;
+
+                    return true;
+                }
+
+                else if (position.previous == null) {  // 1  null-2  3  4
+                    list.head = list.head.next;
+                    list.head.previous = null;
+
+                    return true;
+
+            }
+                else if (position == tail) {
+                    position.previous.next = null;
+                    tail = position.previous;
+                    return true;
+                }
+
+            position = position.next;
+        }
+
+        return false;
+
+
+
+
+
+
+    }
 
 
 }

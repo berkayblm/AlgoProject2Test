@@ -47,7 +47,7 @@ public class main {
         Student student6 = new Student(2, "Fatih Terim", arr5);
         Student student7 = new Student(19, "Fatih Terim", arr5);
         Student student8 = new Student(6, "Ronaldo", arr5);
-        Student student9 = new Student(2,"Ysemin",arr9);
+        Student student9 = new Student(15,"Ysemin",arr9);
 
 
         DoublyLinkedList list = new DoublyLinkedList();
@@ -73,6 +73,19 @@ public class main {
         //list.sortDescending(list.head, list);
         list.searchByName("Vecdi Aytaç",list.head);
         list.searchByName("Fatih Terim",list.head);
+        System.out.println("******************");
+        System.out.println(list.removeStudent(1, list));
+        System.out.println(list.removeStudent(19, list));
+        System.out.println(list.removeStudent(7, list));
+        System.out.println(list.removeStudent(15, list));
+        System.out.println(list.removeStudent(2,list));
+        System.out.println(list.removeStudent(6,list));
+        printOutList(list);
+        traverseList(list);
+        //System.out.println(list.removeStudent(1, list.head));
+
+        printOutList(list);
+
     }
 
     public static void printOutList(DoublyLinkedList list) {
