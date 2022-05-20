@@ -1,78 +1,123 @@
 package AlgoProject2Test;
 
-<<<<<<< HEAD
-import abstract_classes.Triangle;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class options {
 
     static DoublyLinkedList studentList = new DoublyLinkedList();
-
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
+
+
+        try(BufferedReader in = new BufferedReader(new FileReader("ogrenciler.txt"))) {
+            String str;
+            while ((str = in.readLine()) != null) {
+                String[] line =  str.split(",");
+                ArrayList<String> phoneNumbers = new ArrayList<>();
+                Student student = new Student();
+                for (int index = 0; index < line.length; index++) {
+
+                    if (line.length > 3) { // if the person has more than 1 phone number.
+
+                        if (index == 0) { // student number
+                            student.setNumber(Integer.parseInt(line[index]));
+                        }
+                        else if (index == 1) { // student name
+                            student.setName(line[index]);
+                        }
+
+                        else { // phone numbers
+                            phoneNumbers.add(line[index]);
+                        }
+
+                    }
+
+
+                    else { // if the person has only one phone number.
+
+                        if (index == 0) {
+                            student.setNumber(Integer.parseInt(line[index]));
+                        }
+                        else if (index == 1) {
+                            student.setName(line[index]);
+                        }
+
+                        else {
+                            phoneNumbers.add(line[index]);
+                        }
+
+                    }
+
+
+                }
+                student.setPhoneNumber(phoneNumbers);
+                studentList.addStudentByOrder(student); // add student to the linked list
+
+            }
+
+        }
+        catch (IOException e) {
+            System.out.println("File Read Error");
+        }
+        printOutList(studentList);
+        studentList.searchByName("Canan Demir", studentList.head);
         showOptions();
-        System.out.print("Yapmak istediğiniz işlemi seçiniz: ");
-        Scanner scanner = new Scanner(System.in);
+        System.out.print("Choose the number of option you want to carry out: ");
         String choice = scanner.nextLine();
 
-        while (!choice.equals("7")) {
+        while (!choice.equals("6")) {
 
 
-            if (choice.equals("1")){
-                try {
-                    File file = new File("ogrenciler.txt");
-                    scanner = new Scanner(file);
+            if(choice.equals("1")){ // add student by giving the whole data
+                Student student = new Student();
 
-                    while (scanner.hasNextLine()) {
+                System.out.println("Enter the data's of the student you want to add into the list:  ");
+                System.out.print("Student Number: ");
+                int number = scanner.nextInt();
+                scanner.nextLine();
 
-                        int number = scanner.nextInt();
+                System.out.print("Name: ");
+                String name = scanner.nextLine();
 
-
-                        Student student = new Student();
-
-                    }
-
-
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                System.out.print("Phone Number(s) (seperate by comma. Example : (0 525 234342, 0 532 122112) : ");
+                ArrayList<String> phoneNumberArrayList = new ArrayList<>();
+                String phoneNo = scanner.nextLine();
+                String[] array = phoneNo.split(",");
+                for (int i = 0; i < array.length; i++) {
+                    phoneNumberArrayList.add(array[i]);
                 }
 
+                student.setName(name);
+                student.setNumber(number);
+                student.setPhoneNumber(phoneNumberArrayList);
+
+                studentList.addStudentByOrder(student);
+                printOutList(studentList);
+            }
 
 
-                /*try(BufferedReader in = new BufferedReader(new FileReader("ogrenciler.txt"))) {
-                    String str;
-                    while ((str = in.readLine()) != null) {
-                        String[] line =  str.split(",");
-                        for (String  s : line)
-                            System.out.print(s);
+            else if(choice.equals("2")) { // print out the whole data of the student(s) by giving the name.
+                System.out.println("Enter the name of the student whom you want to get data.");
+                String name = scanner.nextLine();
+                studentList.searchByName(name, studentList.head);
 
-                    }
-
-                }
-                catch (IOException e) {
-                    System.out.println("File Read Error");
-                }*/
 
 
             }
-            else if(choice.equals("2")){
-                System.out.println("2343");
+            else if(choice.equals("3")) {
+
             }
-            else if(choice.equals("3")){
-                System.out.println("dsffsd");
-            }
-            else if(choice.equals("4")) {
+            else if(choice.equals("4")){
 
             }
             else if(choice.equals("5")){
 
             }
-            else if(choice.equals("6")){
 
-            }
-
-            else if (choice.equals("7")) {
+            else if (choice.equals("6")) {
                 break;
             }
 
@@ -87,50 +132,41 @@ public class options {
 
 
     }
-    public static String showOptions(){
-        return ("1.Listeyi oluşturma\n"+
-        "2.Listeye ekleme yapma\n"+
-        "3.Öğrenci bilgisini ekrana yazdırma\n"+
-        "4.Listeden öğrenci silme\n"+
-        "5.Listeyi ekrana yazdırma\n"+
-        "6.Listeyi azalan sırada ekrana yazdırma\n"+
-        "7.Çıkış için '7' ya basınız");
+    public static String showOptions() {
+        return ("1.Listeyi oluşturma\n" +
+                "2.Listeye ekleme yapma\n" +
+                "3.Öğrenci bilgisini ekrana yazdırma\n" +
+                "4.Listeden öğrenci silme\n" +
+                "5.Listeyi ekrana yazdırma\n" +
+                "6.Listeyi azalan sırada ekrana yazdırma\n" +
+                "7.Çıkış için '7' ya basınız");
 
 
-=======
-public class options {
-    public static void main(String[] args) {
-        System.out.println("1.Listeyi oluşturma");
-        System.out.println("2.Listeye ekleme yapma");
-        System.out.println("3.Öğrenci bilgisini ekrana yazdırma");
-        System.out.println("4.Listeden öğrenci silme");
-        System.out.println("5.Listeyi ekrana yazdırma");
-        System.out.println("6.Listeyi azalan sırada ekrana yazdırma");
-        System.out.println("7.Çıkış");
     }
-    public executeOrders(String choice){
-        if (choice == 1){
+    public static void printOutList(DoublyLinkedList list) {
 
-        }
-        else if(choice == 2){
+        DoublyLinkedList.Node current;
+        current = list.head;
+        while (current != null) {
 
-        }
-        else if(choice == 3){
-
-        }
-        else if(choice == 4){
-
-        }
-        else if(choice == 5){
-
-        }
-        else if(choice == 6){
-
-        }
-        else{
-
+            System.out.println(current.data + "  ");
+            current = current.next;
         }
 
->>>>>>> origin/master
     }
+
+    public static void traverseList(DoublyLinkedList list) {
+
+        DoublyLinkedList.Node curr;
+        curr = list.tail;
+
+
+        while (curr != null) {
+            System.out.println(curr.data + " ");
+            curr = curr.previous;
+        }
+
+    }
+
+
 }

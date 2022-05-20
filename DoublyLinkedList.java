@@ -121,18 +121,20 @@ public class DoublyLinkedList {
 
         while (curr.next != null) {
 
-            if (curr.data.getName() == name)
+            if (curr.data.getName().equals(name)) {
                 System.out.println(curr.data);
                 exist = true;
+            }
             curr = curr.next;
 
-            if (curr.next == null && curr.data.getName() == name)
+            if (curr.next == null && curr.data.getName().equals(name)) {
                 System.out.println(curr.data);
                 exist = true;
+            }
         }
 
         if (exist == false) {
-            System.out.println("-------yok------");
+            System.out.println("No such student found in the list.");
         }
 
 

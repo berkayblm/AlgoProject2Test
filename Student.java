@@ -46,10 +46,8 @@ public class Student {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(ArrayList<String> phoneNumbers) {
-        for (String number : phoneNumbers) {
-            phoneNumber.add(number);
-        }
+    public void setPhoneNumber(ArrayList<String> phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
