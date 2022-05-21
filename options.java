@@ -18,53 +18,34 @@ public class options {
                 String[] line =  str.split(",");
                 ArrayList<String> phoneNumbers = new ArrayList<>();
                 Student student = new Student();
+
                 for (int index = 0; index < line.length; index++) {
 
-                    if (line.length > 3) { // if the person has more than 1 phone number.
-
-                        if (index == 0) { // student number
-                            student.setNumber(Integer.parseInt(line[index]));
-                        }
-                        else if (index == 1) { // student name
-                            student.setName(line[index]);
-                        }
-
-                        else { // phone numbers
-                            phoneNumbers.add(line[index]);
-                        }
-
+                    if (index == 0) { // student number
+                        student.setNumber(Integer.parseInt(line[index]));
+                    }
+                    else if (index == 1) { // student name
+                        student.setName(line[index]);
                     }
 
-
-                    else { // if the person has only one phone number.
-
-                        if (index == 0) {
-                            student.setNumber(Integer.parseInt(line[index]));
-                        }
-                        else if (index == 1) {
-                            student.setName(line[index]);
-                        }
-
-                        else {
-                            phoneNumbers.add(line[index]);
-                        }
-
+                    else if (index >= 2) { // phone numbers
+                        phoneNumbers.add(line[index]);
                     }
-
 
                 }
+
                 student.setPhoneNumber(phoneNumbers);
                 studentList.addStudentByOrder(student); // add student to the linked list
-
             }
 
         }
         catch (IOException e) {
             System.out.println("File Read Error");
         }
+
         printOutList(studentList);
-        studentList.searchByName("Canan Demir", studentList.head);
-        showOptions();
+
+        System.out.println(showOptions());
         System.out.print("Choose the number of option you want to carry out: ");
         String choice = scanner.nextLine();
 
@@ -100,51 +81,59 @@ public class options {
 
 
             else if(choice.equals("2")) { // print out the whole data of the student(s) by giving the name.
-                System.out.println("Enter the name of the student whom you want to get data.");
+                System.out.print("Enter the name of the student whom you want to get data.");
                 String name = scanner.nextLine();
                 studentList.searchByName(name, studentList.head);
 
 
 
             }
-            else if(choice.equals("3")) {
+            else if(choice.equals("3")) { // delete the student by given number.
+                System.out.print("Enter the number of the student you want to delete from the list: ");
+
+                int number = scanner.nextInt();
+                boolean deleted = studentList.removeStudent(number, studentList);
+                if (deleted == true) {
+                    System.out.println("The student with number " + number + " has been successfully deleted.");
+                }
+                else {
+                    System.out.println("No such student with number " + number + " exists");
+                }
+                printOutList(studentList);
 
             }
-            else if(choice.equals("4")){
+            else if(choice.equals("4")){ // print out ascending order
+                printOutList(studentList);
 
             }
-            else if(choice.equals("5")){
-
+            else if(choice.equals("5")){ // print out descending order
+                traverseList(studentList);
             }
 
-            else if (choice.equals("6")) {
+            else if (choice.equals("6")) { // quit
                 break;
             }
 
 
-            showOptions();
-            System.out.println("Yapmak istediginiz işlemi seçiniz: ");
+            System.out.println(showOptions());
+            System.out.println(" Choose the number of option you want to carry out:");
+
             choice = scanner.nextLine();
 
         }
 
-
-
-
     }
     public static String showOptions() {
-        return ("1.Listeyi oluşturma\n" +
-                "2.Listeye ekleme yapma\n" +
-                "3.Öğrenci bilgisini ekrana yazdırma\n" +
-                "4.Listeden öğrenci silme\n" +
-                "5.Listeyi ekrana yazdırma\n" +
-                "6.Listeyi azalan sırada ekrana yazdırma\n" +
-                "7.Çıkış için '7' ya basınız");
-
+        return ("1.Add new student\n" +
+                "2.Show a student's information\n" +
+                "3.Delete a student from the list\n" +
+                "4.Show list by ascending order\n" +
+                "5.Show list by descending order\n" +
+                "6.Press '6' to quit\n");
 
     }
     public static void printOutList(DoublyLinkedList list) {
-
+        System.out.println("------------STUDENT LIST ASCENDING ORDER------------");
         DoublyLinkedList.Node current;
         current = list.head;
         while (current != null) {
@@ -152,11 +141,12 @@ public class options {
             System.out.println(current.data + "  ");
             current = current.next;
         }
+        System.out.println("-------------------------------------");
 
     }
 
     public static void traverseList(DoublyLinkedList list) {
-
+        System.out.println("------------STUDENT LIST DESCENDING ORDER------------");
         DoublyLinkedList.Node curr;
         curr = list.tail;
 
@@ -165,6 +155,7 @@ public class options {
             System.out.println(curr.data + " ");
             curr = curr.previous;
         }
+        System.out.println("-------------------------------------");
 
     }
 

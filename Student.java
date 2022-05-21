@@ -42,8 +42,10 @@ public class Student {
         this.name = name;
     }
 
-    public ArrayList<String> getPhoneNumber() {
+    public ArrayList<String > getPhoneNumber() {
+
         return phoneNumber;
+
     }
 
     public void setPhoneNumber(ArrayList<String> phoneNumber) {
@@ -52,10 +54,8 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "number=" + number +
-                ", name='" + name + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                '}';
+        return "Number=" + getNumber() +
+                ", Name='" + getName() + '\'' +
+                ", PhoneNumber=" + getPhoneNumber();
     }
 }

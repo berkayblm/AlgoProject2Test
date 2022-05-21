@@ -45,7 +45,7 @@ public class DoublyLinkedList {
 
     Node head = null;
     Node tail = null;
-    private  int count = 0;
+    private int count = 0;
 
     public  int getCount() {
         return count;
@@ -77,8 +77,6 @@ public class DoublyLinkedList {
 
         }
 
-
-
         else {
 
             curr = head;
@@ -88,29 +86,20 @@ public class DoublyLinkedList {
 
             }
 
-            /*Node findTail = head;
-            while (findTail.next != null) {
-                findTail = findTail.next;
-            }
-            tail = findTail;*/
-
             newNode.next = curr.next;
 
             if (curr.next != null) {
 
                 newNode.next.previous = newNode;
 
-
             }
             curr.next = newNode;
             newNode.previous = curr;
-            //newNode.previous = head;
             if (newNode.data.getNumber() >= tail.data.getNumber())
                 tail = newNode;
 
         }
         count++;
-
 
     }
 
@@ -137,8 +126,6 @@ public class DoublyLinkedList {
             System.out.println("No such student found in the list.");
         }
 
-
-
     }
 
     public int size() {
@@ -163,7 +150,10 @@ public class DoublyLinkedList {
 
                 else if (position.previous == null) {  // 1  null-2  3  4
                     list.head = list.head.next;
-                    list.head.previous = null;
+
+                    if (list.head != null) {
+                        list.head.previous = null;
+                    }
 
                     return true;
 
@@ -179,12 +169,6 @@ public class DoublyLinkedList {
 
         return false;
 
-
-
-
-
-
     }
-
 
 }
