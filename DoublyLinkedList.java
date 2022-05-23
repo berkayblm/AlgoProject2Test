@@ -11,6 +11,7 @@ public class DoublyLinkedList {
             data = null;
             next = null;
             previous = null;
+
         }
 
         public Node(Student data) {
@@ -139,28 +140,30 @@ public class DoublyLinkedList {
 
             if (position.data.getNumber() == number)
 
-                if(position != head && position != tail) {  // ortada
+                if(position != head && position != tail) {
 
                     position.previous.next = position.next;
                     position.next.previous = position.previous;
                     position = position.next;
 
+                    count--;
                     return true;
                 }
 
-                else if (position.previous == null) {  // 1  null-2  3  4
+                else if (position.previous == null) {
                     list.head = list.head.next;
 
                     if (list.head != null) {
                         list.head.previous = null;
                     }
-
+                    count--;
                     return true;
 
             }
                 else if (position == tail) {
                     position.previous.next = null;
                     tail = position.previous;
+                    count--;
                     return true;
                 }
 

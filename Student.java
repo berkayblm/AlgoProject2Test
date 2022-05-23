@@ -54,8 +54,8 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Number=" + getNumber() +
-                ", Name='" + getName() + '\'' +
-                ", PhoneNumber=" + getPhoneNumber();
+        return  "              " + getNumber() +
+                "                 " + getName() +
+                "                 " + getPhoneNumber();
     }
 }

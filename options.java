@@ -81,7 +81,7 @@ public class options {
 
 
             else if(choice.equals("2")) { // print out the whole data of the student(s) by giving the name.
-                System.out.print("Enter the name of the student whom you want to get data.");
+                System.out.print("Enter the name of the student whom you want to get data:");
                 String name = scanner.nextLine();
                 studentList.searchByName(name, studentList.head);
 
@@ -100,6 +100,7 @@ public class options {
                     System.out.println("No such student with number " + number + " exists");
                 }
                 printOutList(studentList);
+                scanner.nextLine();
 
             }
             else if(choice.equals("4")){ // print out ascending order
@@ -116,7 +117,7 @@ public class options {
 
 
             System.out.println(showOptions());
-            System.out.println(" Choose the number of option you want to carry out:");
+            System.out.print(" Choose the number of option you want to carry out:");
 
             choice = scanner.nextLine();
 
@@ -133,12 +134,17 @@ public class options {
 
     }
     public static void printOutList(DoublyLinkedList list) {
-        System.out.println("------------STUDENT LIST ASCENDING ORDER------------");
+        System.out.println("                       ------------STUDENT LIST ASCENDING ORDER                   ------------");
+        System.out.println("NO        STUDENT NUMBER                    NAME                                 PHONE NUMBER");
         DoublyLinkedList.Node current;
         current = list.head;
+
+        int size = list.size() - (list.size() - 1);
+
         while (current != null) {
 
-            System.out.println(current.data + "  ");
+            System.out.println(String.valueOf(size) + ".)  " + current.data + "  ");
+            size++;
             current = current.next;
         }
         System.out.println("-------------------------------------");
@@ -146,16 +152,19 @@ public class options {
     }
 
     public static void traverseList(DoublyLinkedList list) {
-        System.out.println("------------STUDENT LIST DESCENDING ORDER------------");
+        System.out.println("                       ------------STUDENT LIST ASCENDING ORDER                   ------------");
+        System.out.println("NO        STUDENT NUMBER                    NAME                                 PHONE NUMBER");
         DoublyLinkedList.Node curr;
         curr = list.tail;
 
+        int size = list.size();
 
         while (curr != null) {
-            System.out.println(curr.data + " ");
+            System.out.println(String.valueOf(size) + ".)  " + curr.data + " ");
+            size--;
             curr = curr.previous;
         }
-        System.out.println("-------------------------------------");
+        System.out.println("-----------------------------------------------------");
 
     }
 
