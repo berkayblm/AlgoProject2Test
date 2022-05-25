@@ -5,19 +5,19 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class options {
+public class Main {
 
     static DoublyLinkedList studentList = new DoublyLinkedList();
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
-
+        // reading the file
         try(BufferedReader in = new BufferedReader(new FileReader("ogrenciler.txt"))) {
             String str;
             while ((str = in.readLine()) != null) {
-                String[] line =  str.split(",");
-                ArrayList<String> phoneNumbers = new ArrayList<>();
-                Student student = new Student();
+                String[] line =  str.split(",");   // split the lines by comma
+                ArrayList<String> phoneNumbers = new ArrayList<>(); // arraylist for holding phone numbers
+                Student student = new Student();  // Student object
 
                 for (int index = 0; index < line.length; index++) {
 
@@ -34,7 +34,7 @@ public class options {
 
                 }
 
-                student.setPhoneNumber(phoneNumbers);
+                student.setPhoneNumber(phoneNumbers);  // set Phone number
                 studentList.addStudentByOrder(student); // add student to the linked list
             }
 

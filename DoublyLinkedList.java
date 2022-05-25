@@ -44,18 +44,18 @@ public class DoublyLinkedList {
         }
     }
 
-    Node head = null;
+    Node head = null;   // setting head and tail to null
     Node tail = null;
-    private int count = 0;
+    private int count = 0;  // count variable count how many Student object there are in the linked list.
 
     public  int getCount() {
         return count;
     }
 
-    public void addStudentByOrder(Student student) {
+    public void addStudentByOrder(Student student) {   // adding student by order
 
-        Node newNode = new Node(student);
-        Node curr;
+        Node newNode = new Node(student);   // create a new Node and set student inside the node.
+        Node curr; // current Node for iterating through the linked list
 
         if (head == null) { // if the list is empty, we set head and tail to our new created Node
             head = newNode;
@@ -67,7 +67,7 @@ public class DoublyLinkedList {
         }
 
         /*
-        If the number of our new Student is less than the head Node's data's  st. number.
+        If the number of our new Student is less or equal than the head Node's data's  st. number.
          */
 
         else if (head.data.getNumber() >= newNode.data.getNumber()) {
@@ -78,12 +78,12 @@ public class DoublyLinkedList {
 
         }
 
-        else {
+        else {      // if student's number is greater than the current Node's student number.
 
-            curr = head;
+            curr = head;   // set curr to head
 
             while (curr.next != null && curr.next.data.getNumber() < newNode.data.getNumber()) {
-                curr = curr.next;
+                curr = curr.next;   // jump to the other node
 
             }
 
@@ -96,29 +96,32 @@ public class DoublyLinkedList {
             }
             curr.next = newNode;
             newNode.previous = curr;
-            if (newNode.data.getNumber() >= tail.data.getNumber())
+            if (newNode.data.getNumber() >= tail.data.getNumber())   // if it is greater than the tail's number
                 tail = newNode;
 
         }
-        count++;
+        count++;   // increase the number of student in the linked list every time we add new student.
 
     }
 
-    public void searchByName(String name, Node head) {
+    public void searchByName(String name, Node head) {    // search student data by name
 
-        Node curr = head;
+        Node curr = head;    // set curr node to head
         boolean exist = false;
 
         while (curr.next != null) {
 
-            if (curr.data.getName().equals(name)) {
-                System.out.println(curr.data);
+            if (curr.data.getName().equals(name)) {     // if the name's are equal
+                System.out.println("Number: "+ curr.data.getNumber() + "\n"+
+                        "Name: " + curr.data.getName() + "\n" + "Phone Number: " + curr.data.getPhoneNumber());
+                // print out the data
                 exist = true;
             }
             curr = curr.next;
 
             if (curr.next == null && curr.data.getName().equals(name)) {
-                System.out.println(curr.data);
+                System.out.println("Number: "+ curr.data.getNumber() + "\n"+
+                        "Name: " + curr.data.getName() + "\n" + "Phone Number: " + curr.data.getPhoneNumber());
                 exist = true;
             }
         }
@@ -133,24 +136,24 @@ public class DoublyLinkedList {
         return count;
     }
 
-    public boolean removeStudent(int number, DoublyLinkedList list) {
+    public boolean removeStudent(int number, DoublyLinkedList list) {   // remover the student by giving number
 
-        Node position = list.head;
+        Node position = list.head; // set position to head
         while (position != null) {
 
             if (position.data.getNumber() == number)
 
-                if(position != head && position != tail) {
+                if(position != head && position != tail) {  // if it is neither tail nor head.
 
                     position.previous.next = position.next;
                     position.next.previous = position.previous;
                     position = position.next;
 
-                    count--;
+                    count--;   // decrease the amount of student from the list
                     return true;
                 }
 
-                else if (position.previous == null) {
+                else if (position.previous == null) {  // if it is head
                     list.head = list.head.next;
 
                     if (list.head != null) {
@@ -160,17 +163,17 @@ public class DoublyLinkedList {
                     return true;
 
             }
-                else if (position == tail) {
+                else if (position == tail) {   // if it is tail
                     position.previous.next = null;
                     tail = position.previous;
                     count--;
                     return true;
                 }
 
-            position = position.next;
+            position = position.next;  // jump to the other node
         }
 
-        return false;
+        return false;  // returns false if cannot not be removed.
 
     }
 

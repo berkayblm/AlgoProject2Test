@@ -2,7 +2,7 @@ package AlgoProject2Test;
 
 import java.util.ArrayList;
 
-public class main {
+public class maindeneme {
     public static void main(String[] args) {
         /*ArrayList<String> arr1 = new ArrayList<>();
         arr1.add("05324234");
